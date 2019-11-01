@@ -35,12 +35,18 @@ def valid_proof(last_hash, proof):
     """
     Validates the Proof:  Multi-ouroborus:  Do the last six characters of
     the hash of the last proof match the first six characters of the proof?
-
     IE:  last_hash: ...AE9123456, new hash 123456888...
     """
 
     # TODO: Your code here!
-    pass
+
+    guess = f"{proof}".encode()
+    hashedGuess = hashlib.sha256(guess).hexdigest()
+
+    last_hash = str(last_hash).encode()
+    last_hash = hashlib.sha256(last_hash).hexdigest()
+
+    return guess[:6] == last_hash[-6:]
 
 
 if __name__ == '__main__':
